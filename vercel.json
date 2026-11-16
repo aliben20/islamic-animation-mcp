@@ -1,5 +1,11 @@
 {
   "version": 2,
-  "functions": { "api/*.js": { "maxDuration": 60 } },
-  "rewrites": [{ "source": "/mcp", "destination": "/api/mcp" }]
+  "builds": [
+    { "src": "api/**/*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "^/api/(.*)$", "dest": "/api/$1" },
+    { "src": "^/mcp$", "dest": "/api/mcp" },
+    { "src": "^/$", "dest": "/api/index" }
+  ]
 }
